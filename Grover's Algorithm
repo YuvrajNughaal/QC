@@ -1,0 +1,45 @@
+import numpy as np     
+from qiskit import QuantumCircuit, transpile, Aer, IBMQ, execute, assemble
+from qiskit.providers.ibmq import least_busy
+from qiskit.tools.jupyter import *
+from qiskit.visualization import *
+from ibm_quantum_widgets import *
+
+def initialize(qc):
+  qc.h(0)                          
+  qc.h(1)
+  qc.barrier()
+grover_circuit = QuantumCircuit(2) 
+initialize(grover_circuit)
+grover_circuit.draw('mpl')
+
+def oracle_11(qc): 
+	qc.cz(0,1)          
+	qc.barrier()
+oracle_11(grover_circuit)
+grover_circuit.draw('mpl')
+
+def u_g(qc):
+  qc.h(0)
+  qc.h(1)
+  qc.x(0)
+  qc.x(1)
+  qc.h(1)
+  qc.cx(0,1)
+  qc.x(0)
+  qc.h(1)
+  qc.h(0)
+  qc.x(1)
+  qc.h(1)
+  qc.barrier()
+u_g(grover_circuit)        
+grover_circuit.draw('mpl')
+
+grover_circuit.measure_all()
+grover_circuit.draw('mpl')
+
+backend = Aer.get_backend('qasm_simulator')
+job = execute(grover_circuit, backend, shots = 1024)
+result = job.result()
+counts = result.get_counts()
+plot_histogram(counts)
