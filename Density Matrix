@@ -1,0 +1,14 @@
+from qiskit import QuantumCircuit
+import qiskit.quantum_info as qi
+from qiskit.visualization import array_to_latex
+
+
+Statevector([0.        +0.j, 0.70710678+0.j, 0.70710678+0.j,
+             0.        +0.j],
+            dims=(2, 2))
+
+r1 = qi.DensityMatrix(state1)
+r1
+
+r1.draw('city')
+
