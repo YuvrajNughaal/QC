@@ -1,0 +1,26 @@
+from qiskit import QuantumCircuit
+import qiskit.quantum_info as qi
+from qiskit.visualization import array_to_latex
+
+a=0
+b=1
+qc = QuantumCircuit(2)
+qc.cx(a,b) 
+qc.cx(b,a) 
+qc.draw()
+
+qc.cx(b,a) 
+qc.cx(a,b) 
+qc.draw()
+
+qc = QuantumCircuit(2)
+qc.cx(b,a)
+qc.cx(a,b)
+qc.cx(b,a)
+qc.draw()
+
+qc = QuantumCircuit(2)
+qc.cx(b,a)
+qc.cx(a,b)
+qc.cx(b,a)
+qc.draw()
