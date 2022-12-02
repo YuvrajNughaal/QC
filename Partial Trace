@@ -1,0 +1,9 @@
+from qiskit import QuantumCircuit
+import qiskit.quantum_info as qi
+from qiskit.visualization import array_to_latex
+
+r2 = qi.partial_trace(r1,[1])
+r2
+
+r3 = qi.partial_trace(r1,[0])
+r3
