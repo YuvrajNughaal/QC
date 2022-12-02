@@ -1,0 +1,14 @@
+from qiskit import QuantumCircuit
+import qiskit.quantum_info as qi
+from qiskit.visualization import array_to_latex
+
+state0 = qi.Statevector([0,1,0,0])
+state0.draw('latex')
+
+qc = QuantumCircuit(2)
+qc.h(1)
+qc.cx(1,0)
+qc.draw(reverse_bits=True)
+
+state1 = state0.evolve(qc)
+state1
